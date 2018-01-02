@@ -3,13 +3,13 @@ $(document).ready(function(){
     socket.on("connect",function(){
         console.log("connected to a socket");
         socket.emit("sendSongs", "all");
-        socket.on("getSongs",function(tracks){
-            // console.log(data[0]);
-            // var tracks=data.tracks;
+        socket.on("getSongs",function(data){
+            
+            var tracks=data.tracks;
             var musicContainer = document.getElementById("music-container");
             var imgCount=1;
             for(var i=0; i<tracks.length; i++){
-                // console.log(tracks[i]);
+                console.log(tracks[i]);
                 
                 musicContainer.innerHTML += `<div class="filterable-item no-transition ${tracks[i].category}"><a><figure class="stream-container"><div class="stream-image"><div class="stream-image"><img src="dummy/gallery-${imgCount}.jpg" alt="gallery ${imgCount}"></div><div class="stream-text"><h3>${tracks[i].name}</h3></div></figure></a><audio style="width:100%;" preload="none" controls><source src="../music/${tracks[i].name}.mp3"  type-"audio/mpeg">Your Browser Doesn't support mp3 audio</audio></div> `;
 
